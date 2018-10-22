@@ -249,6 +249,49 @@ namespace GraficadorSeñales
 
         private void BotonOperacion_Click(object sender, RoutedEventArgs e)
         {
+            señalResultado = null;
+            switch (cb_TipoOperacion.SelectedIndex)
+            {
+                case 0: //suma
+                    señalResultado = Señal.suma(señal, señal_2);
+                    break;
+                case 1: // multiplicar
+                    break;
+                default:
+                    break;
+            }
+            señalResultado.actualizarAmplitudMaxima();
+            plnGrafica_Resultado.Points.Clear();
+            plnGrafica.Points.Clear();
+            plnGrafica_2.Points.Clear();
+
+            // Impresión de la amplitud máxima en los labels de la ventana.
+            lbl_AmplitudMaxima_Resultado.Text = señalResultado.AmplitudMaxima.ToString("F");
+            lbl_AmplitudMinima_Resultado.Text = "-" + señalResultado.AmplitudMaxima.ToString("F");
+
+            if (señalResultado != null)
+            {
+                // Sirve para recorrer una coleccion o arreglo
+                foreach (Muestra muestra in señalResultado.Muestras)
+                {
+                    plnGrafica_2.Points.Add(new Point((muestra.X - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, (muestra.Y / señalResultado.AmplitudMaxima *
+                        ((scrContenedor_Resultado.Height / 2) - 30) * -1 + (scrContenedor_Resultado.Height / 2))));
+                }
+            }
+
+            
+            // Línea del Eje X
+            plnEjeX_Resultado.Points.Clear();
+            plnEjeX_Resultado.Points.Add(new Point(0, scrContenedor_Resultado.Height / 2));
+            plnEjeX_Resultado.Points.Add(new Point((señalResultado.TiempoFinal - señalResultado.TiempoInicial) * 
+                scrContenedor_Resultado.Width, scrContenedor_Resultado.Height / 2));
+
+            // Línea del Eje Y
+            plnEjeY_Resultado.Points.Clear();
+            plnEjeY_Resultado.Points.Add(new Point((0-señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, 0));
+            plnEjeY_Resultado.Points.Add(new Point((0-señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, scrContenedor_Resultado.Height));
+
+
 
         }
     }
