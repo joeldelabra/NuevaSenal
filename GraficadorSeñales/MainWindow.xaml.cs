@@ -256,14 +256,14 @@ namespace GraficadorSeñales
                     señalResultado = Señal.suma(señal, señal_2);
                     break;
                 case 1: // multiplicar
+                    señalResultado = Señal.multiplicacion(señal, señal_2);
                     break;
                 default:
                     break;
             }
             señalResultado.actualizarAmplitudMaxima();
             plnGrafica_Resultado.Points.Clear();
-            plnGrafica.Points.Clear();
-            plnGrafica_2.Points.Clear();
+            
 
             // Impresión de la amplitud máxima en los labels de la ventana.
             lbl_AmplitudMaxima_Resultado.Text = señalResultado.AmplitudMaxima.ToString("F");
@@ -274,7 +274,7 @@ namespace GraficadorSeñales
                 // Sirve para recorrer una coleccion o arreglo
                 foreach (Muestra muestra in señalResultado.Muestras)
                 {
-                    plnGrafica_2.Points.Add(new Point((muestra.X - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, (muestra.Y / señalResultado.AmplitudMaxima *
+                    plnGrafica_Resultado.Points.Add(new Point((muestra.X - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width, (muestra.Y / señalResultado.AmplitudMaxima *
                         ((scrContenedor_Resultado.Height / 2) - 30) * -1 + (scrContenedor_Resultado.Height / 2))));
                 }
             }
