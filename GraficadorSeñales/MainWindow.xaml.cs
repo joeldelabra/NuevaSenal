@@ -211,7 +211,7 @@ namespace GraficadorSeñales
                 case 1:
                     break;
 
-                // Señal Senoidal
+                // Señal Exponencial
                 case 2:
                     panelConfiguracion.Children.Add(new ConfiguracionSeñalExponencial());
                     break;
@@ -252,11 +252,14 @@ namespace GraficadorSeñales
             señalResultado = null;
             switch (cb_TipoOperacion.SelectedIndex)
             {
-                case 0: //suma
+                case 0: //Suma
                     señalResultado = Señal.suma(señal, señal_2);
                     break;
-                case 1: // multiplicar
+                case 1: // Multiplicar
                     señalResultado = Señal.multiplicacion(señal, señal_2);
+                    break;
+                case 2: // Convolucion
+                    señalResultado = Señal.Convolucionar(señal, señal_2);
                     break;
                 default:
                     break;
