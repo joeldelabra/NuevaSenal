@@ -154,6 +154,10 @@ namespace GraficadorSeñales
             return resultado;
 
         }
-            
+
+        
+        
+        
+
     }
 }
