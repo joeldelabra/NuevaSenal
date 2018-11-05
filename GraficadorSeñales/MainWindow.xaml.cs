@@ -94,7 +94,7 @@ namespace GraficadorSeñales
 
                 // Señal Rectangular
                 case 3:
-                    señal = new SeñalRectangular();
+                    señal_2 = new SeñalRectangular();
                     break;
 
                 default:
